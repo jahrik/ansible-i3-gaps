@@ -1,4 +1,8 @@
 ---
+- name: Update cache
+  package:
+    update_cache: yes
+ 
 - name: Add Regolith PPA
   ansible.builtin.apt_repository:
     repo: deb http://ppa.launchpad.net/regolith-linux/stable/ubuntu focal main

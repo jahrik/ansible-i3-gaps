@@ -1,7 +1,7 @@
-Role Name
-=========
+i3_gaps
+=======
 
-A brief description of the role goes here.
+Installs and configures i3-gaps
 
 Requirements
 ------------
@@ -23,14 +23,14 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: servers
+    - hosts: laptops
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: jahrik.i3_gaps, x: 42 }
 
 License
 -------
 
-BSD
+GPLv2
 
 Author Information
 ------------------
