@@ -1,0 +1,112 @@
+---
+- include_tasks: redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include_tasks: debian.yml
+  when: ansible_os_family == 'Debian'
+
+- include_tasks: archlinux.yml
+  when: ansible_os_family == 'Archlinux'
+
+- name: Create ~/.config/i3 directories
+  file:
+    path: "~/.config/{{ item }}"
+    state: directory
+  with_items:
+    - i3
+    - i3/bin
+    - i3/systemd
+  tags: [ 'i3' ]
+
+- name: generate i3 config files
+  template:
+    src: "i3/{{ item }}.j2"
+    dest: "~/.config/i3/{{ item }}"
+  with_items:
+    - Xresources.dark
+    - Xresources.light
+    - config
+    - conkyrc
+    - dark.xresources
+    - dunstrc
+    - gtk-3.0-settings
+    - gtkrc-2.0
+    - light.xresources
+    - xinitrc
+    - xmodmap
+    - xresources
+  tags: [ 'i3' ]
+
+- name: generate i3 bin files
+  template:
+    src: "i3/{{ item }}.j2"
+    dest: "~/.config/i3/{{ item }}"
+    mode: 0777
+  with_items:
+    - bin/apply-colors-runtime
+    - bin/conky-wrapper
+  tags: [ 'i3' ]
+
+- name: symlink xinitrc
+  file:
+    src: "~/.config/i3/xinitrc"
+    dest: "~/.xinitrc"
+    state: link
+  tags: [ 'i3' ]
+
+- name: create $HOME/.urxvt/ext/ dir
+  file:
+    path: "~/.urxvt/ext/"
+    state: directory
+  tags: [ 'i3' ]
+
+- name: download urxvt font-size plugin
+  get_url:
+    url: https://raw.githubusercontent.com/majutsushi/urxvt-font-size/master/font-size
+    dest: "~/.urxvt/ext/font-size"
+  tags: [ 'i3' ]
+
+- name: enable urxvt keyboard-select plugin
+  file:
+    src: /usr/lib/urxvt/perl/keyboard-select
+    dest: "~/.urxvt/ext/keyboard-select"
+    state: link
+  tags: [ 'i3' ]
+
+- name: enable urxvt url-select plugin
+  file:
+    src: /usr/lib/urxvt/perl/url-select
+    dest: "~/.urxvt/ext/url-select"
+    state: link
+  tags: [ 'i3' ]
+
+- name: create $HOME/screenshots dir for scrot
+  file:
+    path: "~/screenshots/"
+    state: directory
+  tags: [ 'i3' ]
+
+- name: Set default background image for feh
+  copy:
+    src: background.jpg
+    dest: /var/background.jpg
+
+- name: create $HOME/.config/polybar dir
+  file:
+    path: "~/.config/polybar/"
+    state: directory
+  tags: [ 'i3' ]
+
+- name: Generate polybar config files
+  template:
+    src: "polybar/{{ item }}.j2"
+    dest: "~/.config/polybar/{{ item }}"
+  with_items:
+    - launch.sh
+    - config
+  tags: [ 'i3' ]
+
+- name: Make polybar launch.sh executable
+  file:
+    path: "~/.config/polybar/launch.sh"
+  tags: [ 'i3' ]

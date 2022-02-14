@@ -1,0 +1,37 @@
+---
+- name: Add Regolith PPA
+  ansible.builtin.apt_repository:
+    repo: deb http://ppa.launchpad.net/regolith-linux/stable/ubuntu focal main
+    state: present
+
+- name: Install i3-gaps
+  package:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - i3-gaps
+    - i3lock
+    - i3status
+
+- name: Install i3 extras
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - conky
+    - dmenu
+    - dunst
+    - feh
+    # - polybar
+    - redshift
+    - rxvt-unicode
+    - scrot
+    # - terminus-font
+    - ttf-dejavu
+    - udiskie
+    # - urxvt-perls
+    - xcalib
+    # - xf86-input-synaptics
+    # - xorg-xmodmap
+    # - xorg-xrdb
