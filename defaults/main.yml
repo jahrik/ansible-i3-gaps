@@ -2,7 +2,13 @@
 browser: chromium
 text:
   font: DejaVu Sans Mono
-  size: 24
+  size: 18
+
+i3:
+  lock: true
+  bar: false
+  polybar: true
+
 conky:
   update_int: 2
   color_01: FFCC99
