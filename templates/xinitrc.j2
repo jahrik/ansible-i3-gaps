@@ -18,7 +18,7 @@ xrdb -merge $I3_CONFIG_DIR/xresources
 redshift -l 42.56:114.46 -m randr -t 5500:5000 -g 0.75:0.75:0.75 -b 1.0:0.9 &
 
 # notification
-dunst -config ~/.i3/dunstrc &
+dunst -config ~/.config/i3/dunstrc &
 
 # disks automounting
 # udiskie &
@@ -27,7 +27,7 @@ dunst -config ~/.i3/dunstrc &
 xset -b
 
 # set background
-feh --bg-scale /var/background.jpg
+feh --bg-scale ~/.config/i3/background.jpg
 
 # gpg agent
 export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
