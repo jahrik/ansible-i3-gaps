@@ -1,11 +1,12 @@
 ---
-- name: Update cache
+- name: Update cache and install dependencies
   package:
+    name: dirmngr
     update_cache: yes
- 
-- name: Add Regolith PPA
-  ansible.builtin.apt_repository:
-    repo: deb http://ppa.launchpad.net/regolith-linux/stable/ubuntu focal main
+
+- name: Install Regolith ppa
+  apt_repository:
+    repo: ppa:regolith-linux/release
     state: present
 
 - name: Install i3-gaps
@@ -27,15 +28,9 @@
     - dmenu
     - dunst
     - feh
-    # - polybar
     - redshift
     - rxvt-unicode
     - scrot
-    # - terminus-font
     - ttf-dejavu
     - udiskie
-    # - urxvt-perls
     - xcalib
-    # - xf86-input-synaptics
-    # - xorg-xmodmap
-    # - xorg-xrdb
