@@ -1,12 +1,14 @@
 i3_gaps
 =======
 
+[![CICD](https://github.com/jahrik/ansible-i3_gaps/actions/workflows/cicd.yml/badge.svg)](https://github.com/jahrik/ansible-i3_gaps/actions/workflows/cicd.yml)
+
 Installs and configures i3-gaps
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+
 
 Role Variables
 --------------
@@ -35,4 +37,6 @@ GPLv2
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+jahrik@gmail.com
+
+https://homelab.business/
