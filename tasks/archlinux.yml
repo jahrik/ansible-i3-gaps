@@ -1,5 +1,6 @@
 ---
 - name: Install i3-gaps
+  become: true
   package:
     name: "{{ item }}"
     state: present
@@ -9,6 +10,7 @@
     - i3status
 
 - name: Install i3 extras
+  become: true
   package:
     name: "{{ item }}"
     state: present

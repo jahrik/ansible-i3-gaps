@@ -1,15 +1,18 @@
 ---
 - name: Update cache and install dependencies
+  become: true
   package:
     name: dirmngr
     update_cache: yes
 
 - name: Install Regolith ppa
+  become: true
   apt_repository:
     repo: ppa:regolith-linux/release
     state: present
 
 - name: Install i3-gaps
+  become: true
   package:
     name: "{{ item }}"
     state: present
@@ -20,6 +23,7 @@
     - i3status
 
 - name: Install i3 extras
+  become: true
   package:
     name: "{{ item }}"
     state: present
