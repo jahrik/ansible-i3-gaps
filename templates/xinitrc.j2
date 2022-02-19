@@ -11,8 +11,13 @@ export I3_CONFIG_DIR="$(dirname $(readlink -f $0))"
 
 export PATH="$PATH:$I3_CONFIG_DIR/bin:$HOME/bin"
 
-# use xresources
-xrdb -merge $I3_CONFIG_DIR/xresources
+{% if terminal is sameas xrvt %}
+# use urxvt xresources
+xrdb -merge ~/.urxvt/xresources
+
+# terminal server
+urxvtd &
+{% endif %}
 
 # color temperature adjustment, set for Boise
 redshift -l 42.56:114.46 -m randr -t 5500:5000 -g 0.75:0.75:0.75 -b 1.0:0.9 &
@@ -35,9 +40,6 @@ gpg-connect-agent updatestartuptty /bye
 
 # ssh-agent
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-
-# terminal server
-urxvtd &
 
 i3
 

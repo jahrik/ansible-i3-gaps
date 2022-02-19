@@ -18,18 +18,11 @@
     src: "{{ item }}.j2"
     dest: "~/.config/i3/{{ item }}"
   with_items:
-    - Xresources.dark
-    - Xresources.light
     - config
     - conkyrc
-    - dark.xresources
     - dunstrc
-    - gtk-3.0-settings
-    - gtkrc-2.0
-    - light.xresources
     - xinitrc
     - xmodmap
-    - xresources
   tags: [ 'i3' ]
 
 - name: symlink xinitrc
