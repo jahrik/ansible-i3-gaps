@@ -4,12 +4,14 @@
   package:
     name: dirmngr
     update_cache: yes
+  tags: [ 'i3' ]
 
 - name: Install Regolith ppa
   become: true
   apt_repository:
     repo: ppa:regolith-linux/release
     state: present
+  tags: [ 'i3' ]
 
 - name: Install i3-gaps
   become: true
@@ -21,6 +23,7 @@
     - i3-gaps
     - i3lock
     - i3status
+  tags: [ 'i3' ]
 
 - name: Install i3 extras
   become: true
@@ -38,3 +41,4 @@
     - ttf-dejavu
     - udiskie
     - xcalib
+  tags: [ 'i3' ]

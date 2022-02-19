@@ -45,3 +45,4 @@
   copy:
     src: background.jpg
     dest: "~/.config/i3/background.jpg"
+  tags: [ 'i3' ]

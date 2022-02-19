@@ -11,14 +11,14 @@ export I3_CONFIG_DIR="$(dirname $(readlink -f $0))"
 
 export PATH="$PATH:$I3_CONFIG_DIR/bin:$HOME/bin"
 
-{% if terminal is sameas rxvt %}
+{% if i3.terminal == 'rxvt' %}
 # use urxvt xresources
 xrdb -merge ~/.urxvt/xresources
 
 # terminal server
 urxvtd &
-{% endif %}
 
+{% endif %}
 # color temperature adjustment, set for Boise
 redshift -l 42.56:114.46 -m randr -t 5500:5000 -g 0.75:0.75:0.75 -b 1.0:0.9 &
 
