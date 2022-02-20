@@ -26,4 +26,7 @@
     - xf86-input-synaptics
     - xorg-xmodmap
     - xorg-xrdb
+    - xorg-server
+    - xorg-xinit
+    - xorg-xrandr
   tags: [ 'i3' ]
