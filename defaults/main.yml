@@ -3,7 +3,7 @@ i3:
   lock: true
   bar: false
   polybar: true
-  terminal: rxvt
+  terminal: alacritty
 
 conky:
   update_int: 2
