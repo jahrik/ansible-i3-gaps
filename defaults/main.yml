@@ -1,4 +1,6 @@
 ---
+install: true
+
 i3:
   lock: true
   bar: false
