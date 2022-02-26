@@ -35,7 +35,7 @@
     - dmenu
     - dunst
     - feh
-    - redshift
+    # - redshift
     - rxvt-unicode
     - scrot
     - ttf-dejavu

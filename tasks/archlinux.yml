@@ -20,7 +20,7 @@
     - dmenu
     - dunst
     - feh
-    - redshift
+    # - redshift
     - scrot
     - xcalib
     - xf86-input-synaptics
