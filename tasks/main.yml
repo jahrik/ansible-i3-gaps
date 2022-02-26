@@ -1,48 +1,6 @@
 ---
-- include_tasks: debian.yml
-  when: ansible_os_family == 'Debian'
+- include_tasks: install.yml
+  when: install | default('true') == true
 
-- include_tasks: archlinux.yml
-  when: ansible_os_family == 'Archlinux'
-
-- name: Create ~/.config/i3 directory
-  become: false
-  file:
-    path: "~/.config/i3"
-    state: directory
-  tags: [ 'i3' ]
-
-- name: generate i3 config files
-  become: false
-  template:
-    src: "{{ item }}.j2"
-    dest: "~/.config/i3/{{ item }}"
-  with_items:
-    - config
-    - conkyrc
-    - dunstrc
-    - xinitrc
-    - xmodmap
-  tags: [ 'i3' ]
-
-- name: symlink xinitrc
-  become: false
-  file:
-    src: "~/.config/i3/xinitrc"
-    dest: "~/.xinitrc"
-    state: link
-  tags: [ 'i3' ]
-
-- name: create $HOME/screenshots dir for scrot
-  become: false
-  file:
-    path: "~/screenshots/"
-    state: directory
-  tags: [ 'i3' ]
-
-- name: Set default background image for feh
-  become: false
-  copy:
-    src: background.jpg
-    dest: "~/.config/i3/background.jpg"
-  tags: [ 'i3' ]
+- include_tasks: uninstall.yml
+  when: install | default('true') == false

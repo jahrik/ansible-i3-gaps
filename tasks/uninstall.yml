@@ -1,0 +1,27 @@
+---
+- name: Uninstall i3
+  become: true
+  package:
+    name:
+      - i3-gaps
+      - i3lock
+      - i3status
+    state: absent
+  tags:
+    - i3
+
+- name: Destroy ~/.config/i3 directory
+  become: false
+  file:
+    path: ~/.config/i3
+    state: absent
+  tags:
+    - i3
+
+- name: remove xinitrc
+  become: false
+  file:
+    path: ~/.xinitrc
+    state: absent
+  tags:
+    - i3
