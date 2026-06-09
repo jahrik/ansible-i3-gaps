@@ -1,42 +1,61 @@
-i3_gaps
-=======
+# ansible-i3-gaps
 
-[![CICD](https://github.com/jahrik/ansible-i3_gaps/actions/workflows/cicd.yml/badge.svg)](https://github.com/jahrik/ansible-i3_gaps/actions/workflows/cicd.yml)
+[![CICD](https://github.com/jahrik/ansible-i3-gaps/actions/workflows/cicd.yml/badge.svg)](https://github.com/jahrik/ansible-i3-gaps/actions/workflows/cicd.yml)
 
-Installs and configures i3-gaps
+Install and configure [i3-gaps](https://github.com/Airblader/i3) tiling window manager along with a full set of supporting packages (conky, dunst, feh, dmenu, scrot, etc.) and deploy templated config files to `~/.config/i3/`. Supports Arch Linux and Debian/Ubuntu.
 
-Requirements
-------------
+## Requirements
 
+None beyond Ansible itself.
 
+## Role Variables
 
-Role Variables
---------------
+| Variable | Default | Description |
+|---|---|---|
+| `install` | `true` | Set to `false` to uninstall i3 and remove config files |
+| `i3.lock` | `true` | Enable i3lock |
+| `i3.bar` | `false` | Use i3bar (false = use polybar) |
+| `i3.polybar` | `true` | Enable polybar |
+| `i3.terminal` | `alacritty` | Default terminal emulator |
+| `conky.update_int` | `2` | Conky update interval (seconds) |
+| `conky.interface` | `ansible_default_ipv4.interface` | Network interface for conky |
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+## Dependencies
 
-Dependencies
-------------
+None (Arch packages installed directly via pacman).
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+## Example Playbook
 
-Example Playbook
-----------------
+```yaml
+- hosts: workstations
+  roles:
+    - role: jahrik.i3_gaps
+```
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+To uninstall:
 
-    - hosts: laptops
-      roles:
-         - { role: jahrik.i3_gaps, x: 42 }
+```yaml
+- hosts: workstations
+  roles:
+    - role: jahrik.i3_gaps
+      vars:
+        install: false
+```
 
-License
--------
+## Testing
+
+```bash
+# Lint
+yamllint .
+
+# Full molecule test (Arch + Ubuntu containers)
+molecule test
+
+# Iterative
+molecule converge
+molecule destroy
+```
+
+## License
 
 GPLv2
-
-Author Information
-------------------
-
-jahrik@gmail.com
-
-https://homelab.business/

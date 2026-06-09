@@ -1,19 +1,21 @@
 ---
-- include_tasks: "{{ ansible_os_family | lower }}.yml"
+- ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
 
 - name: Create ~/.config/i3 directory
   become: false
-  file:
+  ansible.builtin.file:
     path: "~/.config/i3"
     state: directory
+    mode: "0755"
   tags: [ 'i3' ]
 
-- name: generate i3 config files
+- name: Generate i3 config files
   become: false
-  template:
+  ansible.builtin.template:
     src: "{{ item }}.j2"
     dest: "~/.config/i3/{{ item }}"
-  with_items:
+    mode: "0644"
+  loop:
     - config
     - conkyrc
     - dunstrc
@@ -21,24 +23,26 @@
     - xmodmap
   tags: [ 'i3' ]
 
-- name: symlink xinitrc
+- name: Symlink xinitrc
   become: false
-  file:
+  ansible.builtin.file:
     src: "~/.config/i3/xinitrc"
     dest: "~/.xinitrc"
     state: link
   tags: [ 'i3' ]
 
-- name: create $HOME/screenshots dir for scrot
+- name: Create ~/screenshots dir for scrot
   become: false
-  file:
+  ansible.builtin.file:
     path: "~/screenshots/"
     state: directory
+    mode: "0755"
   tags: [ 'i3' ]
 
 - name: Set default background image for feh
   become: false
-  copy:
+  ansible.builtin.copy:
     src: background.jpg
     dest: "~/.config/i3/background.jpg"
+    mode: "0644"
   tags: [ 'i3' ]
