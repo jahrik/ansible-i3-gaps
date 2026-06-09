@@ -1,5 +1,6 @@
 ---
-- ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
+- name: Include OS-specific tasks
+  ansible.builtin.include_tasks: "{{ ansible_os_family | lower }}.yml"
 
 - name: Create ~/.config/i3 directory
   become: false
