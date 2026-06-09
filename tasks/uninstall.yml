@@ -1,7 +1,7 @@
 ---
 - name: Uninstall i3
   become: true
-  package:
+  ansible.builtin.package:
     name:
       - i3-gaps
       - i3lock
@@ -12,15 +12,15 @@
 
 - name: Destroy ~/.config/i3 directory
   become: false
-  file:
+  ansible.builtin.file:
     path: ~/.config/i3
     state: absent
   tags:
     - i3
 
-- name: remove xinitrc
+- name: Remove xinitrc
   become: false
-  file:
+  ansible.builtin.file:
     path: ~/.xinitrc
     state: absent
   tags:
