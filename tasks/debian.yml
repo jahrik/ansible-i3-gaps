@@ -1,44 +1,27 @@
 ---
-- name: Update cache and install dependencies
-  become: true
-  ansible.builtin.apt:
-    name: dirmngr
-    state: present
-    update_cache: true
-    cache_valid_time: 3600
-  tags: [ 'i3' ]
-
-- name: Install Regolith ppa
-  become: true
-  ansible.builtin.apt_repository:
-    repo: ppa:regolith-linux/release
-    state: present
-  tags: [ 'i3' ]
-
-- name: Install i3-gaps
+- name: Install i3 and related packages
   become: true
   ansible.builtin.apt:
     name:
-      - i3-gaps
+      - i3
       - i3lock
       - i3status
     state: present
     update_cache: true
     cache_valid_time: 3600
-  tags: [ 'i3' ]
+  tags: ['i3']
 
 - name: Install i3 extras
   become: true
   ansible.builtin.package:
     name:
-      - conky
+      - conky-all
       - dmenu
       - dunst
       - feh
       - rxvt-unicode
       - scrot
-      - ttf-dejavu
+      - fonts-dejavu
       - udiskie
-      - xcalib
     state: present
-  tags: [ 'i3' ]
+  tags: ['i3']
