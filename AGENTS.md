@@ -35,13 +35,9 @@ Installs [i3-gaps](https://github.com/Airblader/i3) tiling window manager and a 
 ## Testing
 
 ```bash
-# Lint
-PATH="$HOME/.venv/ansible/bin:$PATH" yamllint .
-
-# Full test (Arch + Ubuntu)
-mtest test
-
-# Iterative
-mtest converge
-mtest destroy
+yamllint .
+ansible-lint
+molecule test
+molecule converge
+molecule destroy
 ```

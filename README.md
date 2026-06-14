@@ -2,11 +2,13 @@
 
 [![CICD](https://github.com/jahrik/ansible-i3-gaps/actions/workflows/cicd.yml/badge.svg)](https://github.com/jahrik/ansible-i3-gaps/actions/workflows/cicd.yml)
 
-Install and configure [i3-gaps](https://github.com/Airblader/i3) tiling window manager along with a full set of supporting packages (conky, dunst, feh, dmenu, scrot, etc.) and deploy templated config files to `~/.config/i3/`. Supports Arch Linux and Debian/Ubuntu.
+Install and configure i3 with gaps support, along with a full desktop stack (conky, dunst, feh, dmenu, scrot, xorg tools). Deploys templated config files to `~/.config/i3/`. Supports Arch Linux and Debian/Ubuntu.
 
-## Requirements
+Gaps are enabled by default in the deployed config (`gaps inner 10`, `gaps outer 5`, `smart_gaps on`) with a full keybinding mode for adjusting gaps at runtime (`$mod+Shift+g`).
 
-None beyond Ansible itself.
+**Platform notes:**
+- **Arch**: installs `i3-gaps` from the AUR via pacman (the gaps fork).
+- **Ubuntu 24.04+**: gaps support was merged into mainline i3 at v4.20, so this role installs the standard `i3` package — which includes full gaps functionality. The separate `i3-gaps` package no longer exists on Ubuntu 24.04.
 
 ## Role Variables
 
@@ -19,10 +21,6 @@ None beyond Ansible itself.
 | `i3.terminal` | `alacritty` | Default terminal emulator |
 | `conky.update_int` | `2` | Conky update interval (seconds) |
 | `conky.interface` | `ansible_default_ipv4.interface` | Network interface for conky |
-
-## Dependencies
-
-None (Arch packages installed directly via pacman).
 
 ## Example Playbook
 
@@ -45,13 +43,9 @@ To uninstall:
 ## Testing
 
 ```bash
-# Lint
 yamllint .
-
-# Full molecule test (Arch + Ubuntu containers)
+ansible-lint
 molecule test
-
-# Iterative
 molecule converge
 molecule destroy
 ```
