@@ -3,6 +3,26 @@
   hosts: all
   gather_facts: false
   tasks:
+    - name: Check i3 binary
+      ansible.builtin.command: which i3
+      register: i3_bin
+      changed_when: false
+
+    - name: Assert i3 is installed
+      ansible.builtin.assert:
+        that: i3_bin.rc == 0
+        fail_msg: "i3 binary not found in PATH"
+
+    - name: Run i3 --version
+      ansible.builtin.command: i3 --version
+      register: i3_version
+      changed_when: false
+
+    - name: Assert i3 version output
+      ansible.builtin.assert:
+        that: "'i3' in i3_version.stdout | lower"
+        fail_msg: "i3 --version did not produce expected output"
+
     - name: Check i3 config directory
       ansible.builtin.stat:
         path: ~/.config/i3
@@ -22,6 +42,26 @@
       ansible.builtin.assert:
         that: i3_conf.stat.exists
         fail_msg: "~/.config/i3/config not found"
+
+    - name: Check i3 dunstrc
+      ansible.builtin.stat:
+        path: ~/.config/i3/dunstrc
+      register: dunstrc
+
+    - name: Assert dunstrc exists
+      ansible.builtin.assert:
+        that: dunstrc.stat.exists
+        fail_msg: "~/.config/i3/dunstrc not found"
+
+    - name: Check i3 background image
+      ansible.builtin.stat:
+        path: ~/.config/i3/background.jpg
+      register: i3_bg
+
+    - name: Assert background image exists
+      ansible.builtin.assert:
+        that: i3_bg.stat.exists
+        fail_msg: "~/.config/i3/background.jpg not found"
 
     - name: Check xinitrc symlink
       ansible.builtin.stat:
