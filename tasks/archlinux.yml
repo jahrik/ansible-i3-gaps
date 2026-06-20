@@ -1,9 +1,9 @@
 ---
-- name: Install i3-gaps
+- name: Install i3
   become: true
   community.general.pacman:
     name:
-      - i3-gaps
+      - i3
       - i3lock
       - i3status
     state: present
