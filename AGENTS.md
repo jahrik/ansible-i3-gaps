@@ -35,6 +35,8 @@ Installs [i3-gaps](https://github.com/Airblader/i3) tiling window manager and a 
 ## Testing
 
 ```bash
+uv sync
+source .venv/bin/activate
 yamllint .
 ansible-lint
 molecule test
