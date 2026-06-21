@@ -1,14 +1,18 @@
 # ansible-i3-gaps
 
 [![CICD](https://github.com/jahrik/ansible-i3-gaps/actions/workflows/cicd.yml/badge.svg)](https://github.com/jahrik/ansible-i3-gaps/actions/workflows/cicd.yml)
+[![Ansible Galaxy](https://img.shields.io/badge/ansible--galaxy-jahrik.i3__gaps-blue?logo=ansible)](https://galaxy.ansible.com/ui/standalone/roles/jahrik/i3_gaps/)
 
-Install and configure i3 with gaps support, along with a full desktop stack (conky, dunst, feh, dmenu, scrot, xorg tools). Deploys templated config files to `~/.config/i3/`. Supports Arch Linux and Debian/Ubuntu.
+Installs [i3](https://i3wm.org/) — a tiling X11 window manager ([GitHub](https://github.com/i3/i3)) — with a full desktop stack (conky, dunst, feh, dmenu, scrot, xorg tools). Deploys templated config files to `~/.config/i3/`. Note: i3-gaps was merged into mainline i3 at v4.20 (2022); this role now installs mainline i3 on all platforms.
 
 Gaps are enabled by default in the deployed config (`gaps inner 10`, `gaps outer 5`, `smart_gaps on`) with a full keybinding mode for adjusting gaps at runtime (`$mod+Shift+g`).
 
-**Platform notes:**
-- **Arch**: installs `i3-gaps` from the AUR via pacman (the gaps fork).
-- **Ubuntu 24.04+**: gaps support was merged into mainline i3 at v4.20, so this role installs the standard `i3` package — which includes full gaps functionality. The separate `i3-gaps` package no longer exists on Ubuntu 24.04.
+## OS Support
+
+| Platform | Install method |
+|---|---|
+| Arch Linux | `pacman` (i3, i3lock, i3status, conky, dmenu, dunst, feh, scrot, xcalib, xorg tools) |
+| Debian / Ubuntu | `apt` (i3, i3lock, i3status, conky-all, dmenu, dunst, feh, rxvt-unicode, scrot, fonts-dejavu, udiskie) |
 
 ## Role Variables
 
@@ -53,3 +57,7 @@ molecule destroy
 ## License
 
 GPLv2
+
+## Author Information
+
+jahrik@gmail.com

@@ -41,3 +41,9 @@ molecule test
 molecule converge
 molecule destroy
 ```
+
+## CI
+
+- **Lint**: yamllint + ansible-lint
+- **Molecule**: Ubuntu 24.04 + Arch Linux via Docker
+- **Release**: publishes to Ansible Galaxy on merge to `main`
