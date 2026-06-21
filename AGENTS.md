@@ -35,9 +35,17 @@ Installs [i3-gaps](https://github.com/Airblader/i3) tiling window manager and a 
 ## Testing
 
 ```bash
+uv sync
+source .venv/bin/activate
 yamllint .
 ansible-lint
 molecule test
 molecule converge
 molecule destroy
 ```
+
+## CI
+
+- **Lint**: yamllint + ansible-lint
+- **Molecule**: Ubuntu 24.04 + Arch Linux via Docker
+- **Release**: publishes to Ansible Galaxy on merge to `main`
