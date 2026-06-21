@@ -17,6 +17,6 @@ galaxy_info:
         - jammy
         - focal
   galaxy_tags:
-    - i3_gaps
+    - i3gaps
 
 dependencies: []
