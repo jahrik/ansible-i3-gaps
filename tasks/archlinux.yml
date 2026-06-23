@@ -1,4 +1,12 @@
 ---
+- name: Update pacman cache
+  become: true
+  community.general.pacman:
+    update_cache: true
+  changed_when: false
+  when: ansible_os_family == 'Archlinux'
+  tags: ['i3']
+
 - name: Install i3
   become: true
   community.general.pacman:
@@ -7,8 +15,8 @@
       - i3lock
       - i3status
     state: present
-    update_cache: true
-  tags: [ 'i3' ]
+  when: ansible_os_family == 'Archlinux'
+  tags: ['i3']
 
 - name: Install i3 extras
   become: true
@@ -27,4 +35,5 @@
       - xorg-xinit
       - xorg-xrandr
     state: present
-  tags: [ 'i3' ]
+  when: ansible_os_family == 'Archlinux'
+  tags: ['i3']

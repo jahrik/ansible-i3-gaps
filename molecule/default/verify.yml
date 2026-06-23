@@ -4,14 +4,14 @@
   gather_facts: false
   tasks:
     - name: Check i3 binary
-      ansible.builtin.command: which i3
+      ansible.builtin.stat:
+        path: /usr/bin/i3
       register: i3_bin
-      changed_when: false
 
     - name: Assert i3 is installed
       ansible.builtin.assert:
-        that: i3_bin.rc == 0
-        fail_msg: "i3 binary not found in PATH"
+        that: i3_bin.stat.exists
+        fail_msg: "i3 binary not found in /usr/bin"
 
     - name: Run i3 --version
       ansible.builtin.command: i3 --version

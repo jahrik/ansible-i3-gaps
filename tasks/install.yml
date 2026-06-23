@@ -8,7 +8,7 @@
     path: "~/.config/i3"
     state: directory
     mode: "0755"
-  tags: [ 'i3' ]
+  tags: ['i3']
 
 - name: Generate i3 config files
   become: false
@@ -22,7 +22,7 @@
     - dunstrc
     - xinitrc
     - xmodmap
-  tags: [ 'i3' ]
+  tags: ['i3']
 
 - name: Symlink xinitrc
   become: false
@@ -30,7 +30,7 @@
     src: "~/.config/i3/xinitrc"
     dest: "~/.xinitrc"
     state: link
-  tags: [ 'i3' ]
+  tags: ['i3']
 
 - name: Create ~/screenshots dir for scrot
   become: false
@@ -38,7 +38,7 @@
     path: "~/screenshots/"
     state: directory
     mode: "0755"
-  tags: [ 'i3' ]
+  tags: ['i3']
 
 - name: Set default background image for feh
   become: false
@@ -46,4 +46,4 @@
     src: background.jpg
     dest: "~/.config/i3/background.jpg"
     mode: "0644"
-  tags: [ 'i3' ]
+  tags: ['i3']
