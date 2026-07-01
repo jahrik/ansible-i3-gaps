@@ -1,0 +1,54 @@
+---
+argument_specs:
+  main:
+    short_description: Install and configure i3, dmenu, dunst, and xinitrc.
+    options:
+      install:
+        type: bool
+        default: true
+        description: Install (true) or uninstall (false) i3 and its configuration.
+      i3:
+        type: dict
+        default: {}
+        description: i3 configuration options.
+        options:
+          lock:
+            type: bool
+            default: true
+            description: Enable i3lock.
+          bar:
+            type: bool
+            default: false
+            description: Enable the i3bar.
+          polybar:
+            type: bool
+            default: true
+            description: Enable polybar instead of i3bar.
+          terminal:
+            type: str
+            default: alacritty
+            description: Default terminal emulator launched from i3.
+      conky:
+        type: dict
+        default: {}
+        description: Conky configuration options.
+        options:
+          update_int:
+            type: int
+            default: 2
+            description: Conky update interval, in seconds.
+          color_01:
+            type: str
+            default: FFCC99
+            description: Primary conky color (hex, no leading '#').
+          color_02:
+            type: str
+            default: 33CC33
+            description: Secondary conky color (hex, no leading '#').
+          color_03:
+            type: str
+            default: 33CC99
+            description: Tertiary conky color (hex, no leading '#').
+          interface:
+            type: str
+            description: Network interface conky reports stats for.
