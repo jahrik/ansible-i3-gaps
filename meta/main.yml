@@ -18,5 +18,8 @@ galaxy_info:
         - focal
   galaxy_tags:
     - i3gaps
+    - i3
+    - windowmanager
+    - x11
 
 dependencies: []

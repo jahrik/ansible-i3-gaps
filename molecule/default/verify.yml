@@ -72,3 +72,51 @@
       ansible.builtin.assert:
         that: xinitrc.stat.exists
         fail_msg: "~/.xinitrc not found"
+
+- name: Verify uninstall path
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Locate i3 binary before uninstall
+      ansible.builtin.command: which i3
+      register: i3_bin_before
+      changed_when: false
+
+    - name: Run role in uninstall mode
+      ansible.builtin.include_role:
+        name: jahrik.i3_gaps
+      vars:
+        install: false
+
+    # i3 is an X11 window manager and cannot be executed in an unprivileged
+    # container, so only stat the binary path resolved above rather than
+    # running it.
+    - name: Stat i3 binary after uninstall
+      ansible.builtin.stat:
+        path: "{{ i3_bin_before.stdout }}"
+      register: i3_bin_after
+
+    - name: Assert i3 binary is absent after uninstall
+      ansible.builtin.assert:
+        that: not i3_bin_after.stat.exists
+        fail_msg: "i3 binary still present after uninstall"
+
+    - name: Check i3 config directory after uninstall
+      ansible.builtin.stat:
+        path: ~/.config/i3
+      register: i3_dir_after
+
+    - name: Assert i3 config directory is absent after uninstall
+      ansible.builtin.assert:
+        that: not i3_dir_after.stat.exists
+        fail_msg: "~/.config/i3 directory still present after uninstall"
+
+    - name: Check xinitrc after uninstall
+      ansible.builtin.stat:
+        path: ~/.xinitrc
+      register: xinitrc_after
+
+    - name: Assert xinitrc is absent after uninstall
+      ansible.builtin.assert:
+        that: not xinitrc_after.stat.exists
+        fail_msg: "~/.xinitrc still present after uninstall"

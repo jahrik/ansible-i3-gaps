@@ -6,7 +6,6 @@
       - i3
       - i3lock
       - i3status
-    state: present
     update_cache: true
   tags: [ 'i3' ]
 
@@ -26,5 +25,4 @@
       - xorg-server
       - xorg-xinit
       - xorg-xrandr
-    state: present
   tags: [ 'i3' ]
