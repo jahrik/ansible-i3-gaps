@@ -51,4 +51,4 @@ argument_specs:
             description: Tertiary conky color (hex, no leading '#').
           interface:
             type: str
-            description: Network interface conky reports stats for.
+            description: Network interface conky reports stats for; auto-detected from the default IPv4 route when unset.

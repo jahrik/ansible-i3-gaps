@@ -1,10 +1,18 @@
 ---
 - name: Install i3-gaps
-  ansible.builtin.include_tasks: install.yml
+  ansible.builtin.include_tasks:
+    file: install.yml
+    apply:
+      tags:
+        - i3_gaps
   when: install | default(true) | bool
   tags: ['i3_gaps']
 
 - name: Uninstall i3-gaps
-  ansible.builtin.include_tasks: uninstall.yml
+  ansible.builtin.include_tasks:
+    file: uninstall.yml
+    apply:
+      tags:
+        - i3_gaps
   when: not (install | default(true) | bool)
   tags: ['i3_gaps']
