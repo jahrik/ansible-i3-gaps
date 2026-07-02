@@ -6,7 +6,6 @@
       - i3
       - i3lock
       - i3status
-    state: present
     update_cache: true
     cache_valid_time: 3600
   tags: ['i3']
@@ -23,5 +22,4 @@
       - scrot
       - fonts-dejavu
       - udiskie
-    state: present
   tags: ['i3']

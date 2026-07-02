@@ -44,6 +44,18 @@ To uninstall:
         install: false
 ```
 
+## Tags
+
+Run or skip parts of the role with tags:
+
+```bash
+ansible-playbook playbook.yml --tags i3_gaps
+```
+
+| Tag | Scope |
+|---|---|
+| `i3_gaps` | All role tasks (install + uninstall) |
+
 ## Testing
 
 ```bash
